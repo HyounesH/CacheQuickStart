@@ -19,6 +19,9 @@ public class Student implements Serializable {
         this.clz = clz;
     }
 
+    public Student() {
+    }
+
     public Long getId() {
         return id;
     }

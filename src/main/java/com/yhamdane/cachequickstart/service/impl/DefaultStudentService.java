@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
+
 @Service
 public class DefaultStudentService implements StudentService {
     @Autowired
@@ -15,6 +17,10 @@ public class DefaultStudentService implements StudentService {
     @Override
     @Cacheable("student")
     public Student getStudentById(Long id) {
-        return studentRepository.getStudentById(id);
+        long startDate = new Date().getTime();
+        Student student = studentRepository.getStudentById(id);
+        long endDate = new Date().getTime();
+        System.out.println("response time : " + (endDate - startDate)+"ms");
+        return student;
     }
 }
